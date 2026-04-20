@@ -1,0 +1,51 @@
+plugins {
+    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("io.micronaut.application") version "4.4.2"
+}
+
+version = "0.1"
+group = "com.demos.micronaut"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
+    annotationProcessor("io.micronaut:micronaut-http-validation")
+
+    implementation("io.micronaut:micronaut-http-validation")
+    implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("io.micronaut.mongodb:micronaut-mongo-reactive")
+    implementation("io.projectreactor:reactor-core")
+
+    runtimeOnly("ch.qos.logback:logback-classic")
+    runtimeOnly("org.yaml:snakeyaml")
+
+    testImplementation("io.micronaut.test:micronaut-test-junit5")
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
+}
+
+application {
+    mainClass = "com.demos.micronaut.Application"
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+micronaut {
+    runtime("netty")
+    testRuntime("junit5")
+    processing {
+        incremental(true)
+        annotations("com.demos.micronaut.*")
+    }
+}
+
+tasks.named("test") {
+    useJUnitPlatform()
+}
