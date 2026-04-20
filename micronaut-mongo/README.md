@@ -11,14 +11,14 @@ Proyecto Micronaut para la evaluación comparativa entre **Micronaut**, **Quarku
 ## Ejecutar localmente
 
 ```bash
-cd /home/runner/work/Demos/Demos/micronaut-mongo
+cd micronaut-mongo
 ./gradlew run
 ```
 
 ## Ejecutar con Docker
 
 ```bash
-cd /home/runner/work/Demos/Demos/micronaut-mongo
+cd micronaut-mongo
 docker build -t micronaut-mongo-demo .
 docker run --rm -p 8080:8080 micronaut-mongo-demo
 ```
