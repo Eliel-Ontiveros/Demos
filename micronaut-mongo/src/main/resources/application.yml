@@ -1,0 +1,13 @@
+micronaut:
+  application:
+    name: micronaut-mongo-demo
+  server:
+    port: 8080
+
+mongodb:
+  primary:
+    uri: mongodb://localhost:27017
+    database: db_primary
+  secondary:
+    uri: mongodb://localhost:27017
+    database: db_secondary
