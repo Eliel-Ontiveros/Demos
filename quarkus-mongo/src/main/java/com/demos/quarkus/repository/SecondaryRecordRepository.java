@@ -10,6 +10,7 @@ import org.bson.Document;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +60,7 @@ public class SecondaryRecordRepository {
     }
 
     private Map<String, Object> documentToMap(Document doc) {
-        Map<String, Object> map = new java.util.LinkedHashMap<>();
+        Map<String, Object> map = new LinkedHashMap<>();
         map.put("id", doc.getObjectId("_id") != null ? doc.getObjectId("_id").toHexString() : null);
         map.put("tenant", doc.getString("tenant"));
         map.put("name", doc.getString("name"));

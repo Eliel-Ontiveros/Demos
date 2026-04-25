@@ -1,7 +1,10 @@
 package com.demos.quarkus.entity;
 
 import org.bson.types.ObjectId;
+
 import java.time.LocalDateTime;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class RecordDocument {
 
@@ -21,8 +24,8 @@ public class RecordDocument {
         this.createdAt = LocalDateTime.now();
     }
 
-    public java.util.Map<String, Object> toMap() {
-        java.util.Map<String, Object> map = new java.util.LinkedHashMap<>();
+    public Map<String, Object> toMap() {
+        Map<String, Object> map = new LinkedHashMap<>();
         map.put("id", id != null ? id.toHexString() : null);
         map.put("tenant", tenant);
         map.put("name", name);
