@@ -1,0 +1,4 @@
+target/
+.mvn/repository/
+*.md
+src/test/
