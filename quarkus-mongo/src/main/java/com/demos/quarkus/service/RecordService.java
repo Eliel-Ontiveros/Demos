@@ -71,7 +71,7 @@ public class RecordService {
             int startIndex = batchIndex * SEED_BATCH_SIZE;
             List<Document> batch = createSeedBatch(startIndex, SEED_BATCH_SIZE);
             primaryRepo.insertMany(new ArrayList<>(batch));
-            secondaryRepo.insertMany(createSeedBatch(startIndex, SEED_BATCH_SIZE));
+            secondaryRepo.insertMany(new ArrayList<>(batch));
             primaryInserted += batch.size();
             secondaryInserted += batch.size();
         }

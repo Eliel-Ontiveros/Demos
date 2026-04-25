@@ -7,6 +7,7 @@ import io.quarkus.mongodb.MongoClientName;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import org.bson.Document;
+import org.eclipse.microprofile.config.inject.ConfigProperty;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,11 +20,12 @@ public class PrimaryRecordRepository {
     @MongoClientName("primary")
     MongoClient mongoClient;
 
-    private static final String DATABASE = "db_primary";
+    @ConfigProperty(name = "quarkus.mongodb.primary.database", defaultValue = "db_primary")
+    String database;
     private static final String COLLECTION = "records";
 
     private MongoCollection<Document> getCollection() {
-        return mongoClient.getDatabase(DATABASE).getCollection(COLLECTION);
+        return mongoClient.getDatabase(database).getCollection(COLLECTION);
     }
 
     public Map<String, Object> insert(RecordDocument record) {
