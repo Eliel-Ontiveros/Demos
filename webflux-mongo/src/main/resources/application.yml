@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: webflux-mongo-demo
+  data:
+    mongodb:
+      primary:
+        uri: mongodb://localhost:27017
+        database: db_primary
+      secondary:
+        uri: mongodb://localhost:27017
+        database: db_secondary
+
+server:
+  port: 8082
