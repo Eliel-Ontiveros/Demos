@@ -1,0 +1,97 @@
+#!/bin/sh
+# ----------------------------------------------------------------------------
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#    http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# Apache Maven Wrapper startup batch script, version 3.3.2
+# ----------------------------------------------------------------------------
+
+# If JAVA_HOME not set, try to find it
+if [ -z "$JAVA_HOME" ]; then
+  javaExecutable="`which javaw`"
+  if [ "x$javaExecutable" = "x" ]; then
+    javaExecutable="`which java`"
+  fi
+  if [ -n "$javaExecutable" ] && ! [ "`expr \"$javaExecutable\" : '\([^ ]*\)'`" = "no" ]; then
+    javaDir="`dirname \"$javaExecutable\"`"
+    javaExecutable="`cd \"$javaDir\" && pwd -P`/javaw"
+    if [ ! -x "$javaExecutable" ]; then
+      javaExecutable="`cd \"$javaDir\" && pwd -P`/java"
+    fi
+    javaHome="`dirname \"$javaExecutable\"`"
+    javaHome="`cd \"$javaHome\" && pwd`"
+    JAVA_HOME="$javaHome"
+  fi
+fi
+
+if [ -z "$JAVA_HOME" ]; then
+  echo "Error: JAVA_HOME is not set and java could not be found." >&2
+  exit 1
+fi
+
+JAVA_CMD="$JAVA_HOME/bin/java"
+
+# Determine the base directory of the wrapper script
+APP_BASE_NAME=`basename "$0"`
+APP_HOME="`dirname "$0"`"
+APP_HOME="`cd "$APP_HOME" && pwd`"
+
+MAVEN_PROJECTBASEDIR="$APP_HOME"
+
+WRAPPER_PROPERTIES="$MAVEN_PROJECTBASEDIR/.mvn/wrapper/maven-wrapper.properties"
+
+# Read distribution URL
+if [ -f "$WRAPPER_PROPERTIES" ]; then
+  DISTRIBUTION_URL=`grep 'distributionUrl' "$WRAPPER_PROPERTIES" | cut -d'=' -f2-`
+fi
+
+# Maven home
+MAVEN_USER_HOME="${MAVEN_USER_HOME:-$HOME/.m2}"
+MAVEN_WRAPPER_HOME="$MAVEN_USER_HOME/wrapper/dists"
+
+# Derive local distribution directory from URL
+DIST_NAME=`basename "$DISTRIBUTION_URL" .zip`
+DIST_DIR="$MAVEN_WRAPPER_HOME/$DIST_NAME"
+
+# Download and extract if needed
+if [ ! -d "$DIST_DIR" ]; then
+  mkdir -p "$DIST_DIR"
+  echo "Downloading Maven from $DISTRIBUTION_URL"
+  DOWNLOAD_ZIP="$DIST_DIR/maven.zip"
+  if command -v curl > /dev/null 2>&1; then
+    curl -fsSL "$DISTRIBUTION_URL" -o "$DOWNLOAD_ZIP"
+  elif command -v wget > /dev/null 2>&1; then
+    wget -q "$DISTRIBUTION_URL" -O "$DOWNLOAD_ZIP"
+  else
+    echo "Error: Neither curl nor wget found." >&2
+    exit 1
+  fi
+  unzip -q "$DOWNLOAD_ZIP" -d "$DIST_DIR"
+  rm -f "$DOWNLOAD_ZIP"
+fi
+
+# Find the mvn binary in the extracted directory
+MVN_BINARY=`find "$DIST_DIR" -name "mvn" -type f | head -1`
+if [ -z "$MVN_BINARY" ]; then
+  echo "Error: Maven binary not found after extraction." >&2
+  exit 1
+fi
+chmod +x "$MVN_BINARY"
+
+exec "$MVN_BINARY" "$@"
