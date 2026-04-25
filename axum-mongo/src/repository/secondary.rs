@@ -1,0 +1,32 @@
+use mongodb::{Database, Collection, bson::doc};
+use futures::TryStreamExt;
+use crate::model::RecordDocument;
+
+pub struct SecondaryRepository {
+    collection: Collection<RecordDocument>,
+}
+
+impl SecondaryRepository {
+    pub fn new(db: &Database) -> Self {
+        SecondaryRepository {
+            collection: db.collection("records"),
+        }
+    }
+
+    pub async fn insert(&self, record: RecordDocument) -> Result<RecordDocument, mongodb::error::Error> {
+        let result = self.collection.insert_one(record.clone(), None).await?;
+        let mut inserted = record;
+        inserted.id = result.inserted_id.as_object_id();
+        Ok(inserted)
+    }
+
+    pub async fn find_all(&self) -> Result<Vec<RecordDocument>, mongodb::error::Error> {
+        let cursor = self.collection.find(doc! {}, None).await?;
+        cursor.try_collect().await
+    }
+
+    pub async fn insert_many(&self, records: Vec<RecordDocument>) -> Result<u64, mongodb::error::Error> {
+        let result = self.collection.insert_many(records, None).await?;
+        Ok(result.inserted_ids.len() as u64)
+    }
+}
