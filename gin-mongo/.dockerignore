@@ -1,0 +1,13 @@
+# Binaries
+gin-mongo
+
+# Go cache
+*.test
+*.out
+
+# OS files
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
