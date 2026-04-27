@@ -65,7 +65,8 @@ public class PrimaryRecordRepository {
         map.put("tenant", doc.getString("tenant"));
         map.put("name", doc.getString("name"));
         map.put("value", doc.getString("value"));
-        map.put("createdAt", doc.getString("createdAt"));
+        Object createdAt = doc.get("createdAt");
+        map.put("createdAt", createdAt != null ? createdAt.toString() : null);
         return map;
     }
 }
