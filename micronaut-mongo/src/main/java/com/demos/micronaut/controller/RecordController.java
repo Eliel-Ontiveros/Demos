@@ -10,6 +10,7 @@ import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Header;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.QueryValue;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.reactivestreams.Publisher;
@@ -42,12 +43,16 @@ public class RecordController {
     }
 
     @Get
-    public Publisher<MutableHttpResponse<Object>> getAllRecords(@Header("X-Tenant-ID") String tenant) {
+    public Publisher<MutableHttpResponse<Object>> getAllRecords(
+            @Header("X-Tenant-ID") String tenant,
+            @QueryValue(defaultValue = "100") int limit,
+            @QueryValue(defaultValue = "0") int offset) {
         if (tenant == null || tenant.isBlank()) {
             return Mono.just(HttpResponse.badRequest(Map.of("error", "Missing X-Tenant-ID header")));
         }
 
-        return recordService.getAllRecords(tenant)
+        int effectiveLimit = Math.min(limit, 1000);
+        return recordService.getAllRecords(tenant, effectiveLimit, offset)
                 .map((Map<String, List<RecordDocument>> response) -> HttpResponse.ok((Object) response))
                 .onErrorResume(IllegalArgumentException.class,
                         ex -> Mono.just(HttpResponse.badRequest(Map.of("error", ex.getMessage()))))

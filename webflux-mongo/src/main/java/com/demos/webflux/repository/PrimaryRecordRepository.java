@@ -30,4 +30,9 @@ public class PrimaryRecordRepository {
     public Flux<RecordDocument> findAll() {
         return mongoTemplate.find(new Query(), RecordDocument.class);
     }
+
+    public Flux<RecordDocument> findPaginated(int limit, int offset) {
+        Query query = new Query().skip(offset).limit(limit);
+        return mongoTemplate.find(query, RecordDocument.class);
+    }
 }

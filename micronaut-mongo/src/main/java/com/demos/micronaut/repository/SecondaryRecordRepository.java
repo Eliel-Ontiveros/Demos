@@ -35,6 +35,11 @@ public class SecondaryRecordRepository {
                 .map(this::fromDocument);
     }
 
+    public Flux<RecordDocument> findPaginated(int limit, int offset) {
+        return Flux.from(getCollection().find().skip(offset).limit(limit))
+                .map(this::fromDocument);
+    }
+
     public Mono<Long> insertMany(List<RecordDocument> records) {
         List<Document> docs = records.stream().map(this::toDocument).toList();
         return Mono.from(getCollection().insertMany(docs)).thenReturn((long) records.size());

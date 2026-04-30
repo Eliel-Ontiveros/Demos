@@ -1,4 +1,4 @@
-use mongodb::{Database, Collection, bson::doc};
+use mongodb::{Database, Collection, bson::doc, options::FindOptions};
 use futures::TryStreamExt;
 use crate::model::RecordDocument;
 
@@ -22,6 +22,15 @@ impl SecondaryRepository {
 
     pub async fn find_all(&self) -> Result<Vec<RecordDocument>, mongodb::error::Error> {
         let cursor = self.collection.find(doc! {}).await?;
+        cursor.try_collect().await
+    }
+
+    pub async fn find_paginated(&self, limit: u64, offset: u64) -> Result<Vec<RecordDocument>, mongodb::error::Error> {
+        let options = FindOptions::builder()
+            .limit(limit as i64)
+            .skip(offset)
+            .build();
+        let cursor = self.collection.find(doc! {}).with_options(options).await?;
         cursor.try_collect().await
     }
 
