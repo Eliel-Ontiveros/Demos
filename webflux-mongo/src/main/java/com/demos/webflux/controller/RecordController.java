@@ -40,13 +40,16 @@ public class RecordController {
 
     @GetMapping
     public Mono<ResponseEntity<Map<String, List<RecordDocument>>>> getAllRecords(
-            @RequestHeader(value = "X-Tenant-ID", required = false) String tenantId) {
+            @RequestHeader(value = "X-Tenant-ID", required = false) String tenantId,
+            @RequestParam(defaultValue = "100") int limit,
+            @RequestParam(defaultValue = "0") int offset) {
 
         if (tenantId == null || tenantId.isBlank()) {
             return Mono.just(ResponseEntity.badRequest().<Map<String, List<RecordDocument>>>build());
         }
 
-        return recordService.getAllRecords(tenantId)
+        int effectiveLimit = Math.min(limit, 1000);
+        return recordService.getAllRecords(tenantId, effectiveLimit, offset)
                 .map(ResponseEntity::ok)
                 .onErrorResume(IllegalArgumentException.class,
                         e -> Mono.just(ResponseEntity.badRequest().<Map<String, List<RecordDocument>>>build()));

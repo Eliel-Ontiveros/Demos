@@ -76,13 +76,13 @@ func (s *RecordService) CreateRecord(ctx context.Context, tenant, name, value st
 	}, nil
 }
 
-func (s *RecordService) GetAllRecords(ctx context.Context) (map[string]interface{}, error) {
-	primaryRecords, err := s.primaryRepo.FindAll(ctx)
+func (s *RecordService) GetAllRecords(ctx context.Context, limit, offset int) (map[string]interface{}, error) {
+	primaryRecords, err := s.primaryRepo.FindPaginated(ctx, limit, offset)
 	if err != nil {
 		return nil, fmt.Errorf("primary find failed: %w", err)
 	}
 
-	secondaryRecords, err := s.secondaryRepo.FindAll(ctx)
+	secondaryRecords, err := s.secondaryRepo.FindPaginated(ctx, limit, offset)
 	if err != nil {
 		return nil, fmt.Errorf("secondary find failed: %w", err)
 	}

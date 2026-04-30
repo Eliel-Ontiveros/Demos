@@ -57,10 +57,12 @@ impl RecordService {
 
     pub async fn get_all_records(
         &self,
+        limit: u64,
+        offset: u64,
     ) -> Result<(Vec<RecordDocument>, Vec<RecordDocument>), mongodb::error::Error> {
         let (primary_result, secondary_result) = tokio::join!(
-            self.primary_repo.find_all(),
-            self.secondary_repo.find_all()
+            self.primary_repo.find_paginated(limit, offset),
+            self.secondary_repo.find_paginated(limit, offset)
         );
 
         Ok((primary_result?, secondary_result?))

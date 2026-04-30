@@ -44,10 +44,14 @@ public class RecordService {
     }
 
     public Mono<Map<String, List<RecordDocument>>> getAllRecords(String tenant) {
+        return getAllRecords(tenant, 100, 0);
+    }
+
+    public Mono<Map<String, List<RecordDocument>>> getAllRecords(String tenant, int limit, int offset) {
         validateTenant(tenant);
         return Mono.zip(
-                primaryRecordRepository.findAll().collectList(),
-                secondaryRecordRepository.findAll().collectList()
+                primaryRecordRepository.findPaginated(limit, offset).collectList(),
+                secondaryRecordRepository.findPaginated(limit, offset).collectList()
         ).map(tuple -> Map.of("primary", tuple.getT1(), "secondary", tuple.getT2()));
     }
 
