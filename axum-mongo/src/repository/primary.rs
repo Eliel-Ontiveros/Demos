@@ -27,7 +27,7 @@ impl PrimaryRepository {
 
     pub async fn find_paginated(&self, limit: u64, offset: u64) -> Result<Vec<RecordDocument>, mongodb::error::Error> {
         let options = FindOptions::builder()
-            .limit(limit as i64)
+            .limit(limit.min(i64::MAX as u64) as i64)
             .skip(offset)
             .build();
         let cursor = self.collection.find(doc! {}).with_options(options).await?;
