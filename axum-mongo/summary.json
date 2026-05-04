@@ -1,0 +1,608 @@
+{
+  "root_group": {
+    "name": "",
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": [
+      {
+        "groups": [],
+        "checks": [
+            {
+              "path": "::WebFlux - POST /api/records::POST status 2xx",
+              "id": "07db8e3e187d56d5c9db2b53e042e2e6",
+              "passes": 4280,
+              "fails": 0,
+              "name": "POST status 2xx"
+            },
+            {
+              "passes": 4280,
+              "fails": 0,
+              "name": "POST has primary",
+              "path": "::WebFlux - POST /api/records::POST has primary",
+              "id": "d993a9706c061d659a0e0b7e7291f5ba"
+            }
+          ],
+        "name": "WebFlux - POST /api/records",
+        "path": "::WebFlux - POST /api/records",
+        "id": "fd0b1c8102fd006aad40f70e0d75f2ec"
+      },
+      {
+        "id": "63543acae9a6607f7e5d5f6f854822ee",
+        "groups": [],
+        "checks": [
+            {
+              "name": "Axum GET status 200",
+              "path": "::Axum - GET /api/records::Axum GET status 200",
+              "id": "af70fbe25cbcf0e520d36c5b1eed3e0d",
+              "passes": 0,
+              "fails": 1994
+            },
+            {
+              "fails": 0,
+              "name": "Axum GET < 500ms",
+              "path": "::Axum - GET /api/records::Axum GET < 500ms",
+              "id": "c4e27d14665a3edb56c764238f366afe",
+              "passes": 1994
+            },
+            {
+              "name": "Axum GET has primary",
+              "path": "::Axum - GET /api/records::Axum GET has primary",
+              "id": "5a9e9d32e69ad95cc2ba0fe54426695b",
+              "passes": 0,
+              "fails": 1994
+            }
+          ],
+        "name": "Axum - GET /api/records",
+        "path": "::Axum - GET /api/records"
+      },
+      {
+        "name": "Gin - GET /api/records",
+        "path": "::Gin - GET /api/records",
+        "id": "c40269ea9ffc58bf0d15aff42cc4a519",
+        "groups": [],
+        "checks": [
+            {
+              "fails": 0,
+              "name": "Gin GET status 200",
+              "path": "::Gin - GET /api/records::Gin GET status 200",
+              "id": "2779a8133251f361f66f544308819bf8",
+              "passes": 2711
+            },
+            {
+              "passes": 2711,
+              "fails": 0,
+              "name": "Gin GET < 500ms",
+              "path": "::Gin - GET /api/records::Gin GET < 500ms",
+              "id": "68b1da93402cf72d7959aa09ab70781c"
+            },
+            {
+              "id": "1642e5c751710c1a75d62efba0c18676",
+              "passes": 2711,
+              "fails": 0,
+              "name": "Gin GET has primary",
+              "path": "::Gin - GET /api/records::Gin GET has primary"
+            }
+          ]
+      },
+      {
+        "checks": [
+          {
+            "id": "41a5ae4cc4ac4302be6fb23cc3e6cba2",
+            "passes": 4959,
+            "fails": 0,
+            "name": "POST status 2xx",
+            "path": "::Micronaut - POST /api/records::POST status 2xx"
+          },
+          {
+            "name": "POST has primary",
+            "path": "::Micronaut - POST /api/records::POST has primary",
+            "id": "5c153a2edbcda5e7eafa6a80fa54ca33",
+            "passes": 4959,
+            "fails": 0
+          }
+        ],
+        "name": "Micronaut - POST /api/records",
+        "path": "::Micronaut - POST /api/records",
+        "id": "bf3440b2bee98ac3b7022dd2a3e69d7a",
+        "groups": []
+      },
+      {
+        "path": "::Axum - POST /api/records",
+        "id": "9e5e720468e9613cf350d78f5097a0b6",
+        "groups": [],
+        "checks": [
+            {
+              "name": "POST status 2xx",
+              "path": "::Axum - POST /api/records::POST status 2xx",
+              "id": "5565d459b4e38d04bd36c3a75c7a736d",
+              "passes": 3731,
+              "fails": 0
+            },
+            {
+              "name": "POST has primary",
+              "path": "::Axum - POST /api/records::POST has primary",
+              "id": "d557f75f52dd52eaa0e8a34147c0fd36",
+              "passes": 3731,
+              "fails": 0
+            }
+          ],
+        "name": "Axum - POST /api/records"
+      },
+      {
+        "groups": [],
+        "checks": [
+            {
+              "path": "::WebFlux - GET /api/records::WebFlux GET status 200",
+              "id": "41f17d5deab8a27cdaa5653c02d40f92",
+              "passes": 1760,
+              "fails": 0,
+              "name": "WebFlux GET status 200"
+            },
+            {
+              "name": "WebFlux GET < 500ms",
+              "path": "::WebFlux - GET /api/records::WebFlux GET < 500ms",
+              "id": "4518d3eba09fb6d00a90d5c69dda71bb",
+              "passes": 1760,
+              "fails": 0
+            },
+            {
+              "name": "WebFlux GET has primary",
+              "path": "::WebFlux - GET /api/records::WebFlux GET has primary",
+              "id": "19fa868cc2affcd38cb5d1c8c0e7222d",
+              "passes": 1760,
+              "fails": 0
+            }
+          ],
+        "name": "WebFlux - GET /api/records",
+        "path": "::WebFlux - GET /api/records",
+        "id": "2584b32e644195e4519c1cf72f6c18bb"
+      },
+      {
+        "name": "Gin - POST /api/records",
+        "path": "::Gin - POST /api/records",
+        "id": "8dabd228cf95ccabb96d215bf0b82734",
+        "groups": [],
+        "checks": [
+            {
+              "path": "::Gin - POST /api/records::POST status 2xx",
+              "id": "e65d2f6d3d609e7c358b5f4c6bc7b2a9",
+              "passes": 2344,
+              "fails": 0,
+              "name": "POST status 2xx"
+            },
+            {
+              "name": "POST has primary",
+              "path": "::Gin - POST /api/records::POST has primary",
+              "id": "40c8bf7a60351a7c2df63e96f1e7d4b7",
+              "passes": 2344,
+              "fails": 0
+            }
+          ]
+      },
+      {
+        "name": "Micronaut - GET /api/records",
+        "path": "::Micronaut - GET /api/records",
+        "id": "38c2f852031e7da2af488b321adcf9d0",
+        "groups": [],
+        "checks": [
+            {
+              "name": "Micronaut GET status 200",
+              "path": "::Micronaut - GET /api/records::Micronaut GET status 200",
+              "id": "f7bbb63a922add4a95d1c50d14a79e20",
+              "passes": 1298,
+              "fails": 0
+            },
+            {
+              "name": "Micronaut GET < 500ms",
+              "path": "::Micronaut - GET /api/records::Micronaut GET < 500ms",
+              "id": "d06c2ad0c9e4b3db6fcd8a6f2d908168",
+              "passes": 1298,
+              "fails": 0
+            },
+            {
+              "id": "008bb9771258cdc359240c69058c5bd8",
+              "passes": 1298,
+              "fails": 0,
+              "name": "Micronaut GET has primary",
+              "path": "::Micronaut - GET /api/records::Micronaut GET has primary"
+            }
+          ]
+      }
+    ],
+    "checks": []
+  },
+  "options": {
+    "noColor": false,
+    "summaryTrendStats": [
+      "avg",
+      "min",
+      "med",
+      "max",
+      "p(90)",
+      "p(95)"
+    ],
+    "summaryTimeUnit": ""
+  },
+  "state": {
+    "isStdOutTTY": true,
+    "isStdErrTTY": true,
+    "testRunDurationMs": 180305.3583
+  },
+  "metrics": {
+    "http_req_tls_handshaking": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0,
+        "min": 0,
+        "med": 0,
+        "max": 0,
+        "p(90)": 0,
+        "p(95)": 0
+      }
+    },
+    "get_duration{framework:Axum}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 5.2217,
+        "max": 166.7124,
+        "p(90)": 27.4086,
+        "p(95)": 36.831024999999954,
+        "avg": 10.74516068204615,
+        "min": 1.3577
+      },
+      "thresholds": {
+        "p(95)<500": {
+          "ok": true
+        }
+      }
+    },
+    "group_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 39.26116000000001,
+        "p(95)": 54.057480000000005,
+        "avg": 16.315159639467876,
+        "min": 0.5179,
+        "med": 9.4833,
+        "max": 211.7746
+      }
+    },
+    "http_req_duration{expected_response:true}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 35.17777999999999,
+        "p(95)": 49.08640999999997,
+        "avg": 14.519743599108338,
+        "min": 0.5179,
+        "med": 8.0178,
+        "max": 204.7859
+      }
+    },
+    "request_count": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "rate": 127.98843150076256,
+        "count": 23077
+      }
+    },
+    "http_req_receiving": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 98.0014,
+        "p(90)": 0.5806400000000002,
+        "p(95)": 1.0120200000000001,
+        "avg": 0.2924818780604065,
+        "min": 0,
+        "med": 0
+      }
+    },
+    "iterations": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 23077,
+        "rate": 127.98843150076256
+      }
+    },
+    "http_req_connecting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(90)": 0,
+        "p(95)": 0,
+        "avg": 0.018226359578801407,
+        "min": 0,
+        "med": 0,
+        "max": 22.1954
+      }
+    },
+    "post_duration{framework:Gin}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 12.052386006825943,
+        "min": 0.5179,
+        "med": 6.4956499999999995,
+        "max": 150.6572,
+        "p(90)": 28.689990000000034,
+        "p(95)": 43.17731999999997
+      },
+      "thresholds": {
+        "p(95)<500": {
+          "ok": true
+        }
+      }
+    },
+    "http_req_waiting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 13.804472297092355,
+        "min": 0.5162,
+        "med": 7.5035,
+        "max": 202.9327,
+        "p(90)": 33.925180000000005,
+        "p(95)": 47.06750000000003
+      }
+    },
+    "http_req_sending": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 0.09664138319538944,
+        "min": 0,
+        "med": 0,
+        "max": 30.7245,
+        "p(90)": 0,
+        "p(95)": 0.53452
+      }
+    },
+    "error_rate": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "fails": 21083,
+        "rate": 0.08640637864540451,
+        "passes": 1994
+      }
+    },
+    "post_duration": {
+      "values": {
+        "avg": 13.25235873057329,
+        "min": 0.5179,
+        "med": 7.295400000000001,
+        "max": 202.9327,
+        "p(90)": 32.391940000000005,
+        "p(95)": 46.256019999999985
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "http_req_failed": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0.08640637864540451,
+        "passes": 1994,
+        "fails": 21083
+      },
+      "thresholds": {
+        "rate<0.05": {
+          "ok": false
+        }
+      }
+    },
+    "get_duration{framework:Gin}": {
+      "contains": "time",
+      "values": {
+        "min": 2.1005,
+        "med": 10.8423,
+        "max": 188.4414,
+        "p(90)": 45.9721,
+        "p(95)": 62.1522,
+        "avg": 19.20174998155655
+      },
+      "thresholds": {
+        "p(95)<500": {
+          "ok": true
+        }
+      },
+      "type": "trend"
+    },
+    "checks": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 0.926034460374279,
+        "passes": 49929,
+        "fails": 3988
+      }
+    },
+    "post_duration{framework:WebFlux}": {
+      "contains": "time",
+      "values": {
+        "avg": 13.297488901869126,
+        "min": 1.0502,
+        "med": 7.4821,
+        "max": 202.9327,
+        "p(90)": 31.957469999999997,
+        "p(95)": 44.694914999999995
+      },
+      "thresholds": {
+        "p(95)<500": {
+          "ok": true
+        }
+      },
+      "type": "trend"
+    },
+    "get_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 204.7859,
+        "p(90)": 38.517660000000014,
+        "p(95)": 53.00673999999999,
+        "avg": 16.0503649491176,
+        "min": 1.3577,
+        "med": 8.5217
+      }
+    },
+    "get_duration{framework:WebFlux}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "max": 204.7859,
+        "p(90)": 40.199500000000015,
+        "p(95)": 52.492425000000004,
+        "avg": 16.829021477272732,
+        "min": 2.092,
+        "med": 9.2591
+      },
+      "thresholds": {
+        "p(95)<500": {
+          "ok": true
+        }
+      }
+    },
+    "iteration_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 521.4235,
+        "max": 1212.5076,
+        "p(90)": 1026.08398,
+        "p(95)": 1042.66162,
+        "avg": 687.1906633964512,
+        "min": 501.1018
+      }
+    },
+    "http_req_duration": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "p(95)": 48.2074,
+        "avg": 14.193595558348175,
+        "min": 0.5179,
+        "med": 7.7642,
+        "max": 204.7859,
+        "p(90)": 34.524820000000005
+      },
+      "thresholds": {
+        "p(95)<2000": {
+          "ok": true
+        }
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 4,
+        "min": 0,
+        "max": 198
+      }
+    },
+    "get_duration{framework:Micronaut}": {
+      "contains": "time",
+      "values": {
+        "min": 1.7077,
+        "med": 8.903649999999999,
+        "max": 192.6824,
+        "p(90)": 38.54812,
+        "p(95)": 53.47734999999999,
+        "avg": 16.562488983050855
+      },
+      "thresholds": {
+        "p(95)<500": {
+          "ok": true
+        }
+      },
+      "type": "trend"
+    },
+    "http_reqs": {
+      "contains": "default",
+      "values": {
+        "count": 23077,
+        "rate": 127.98843150076256
+      },
+      "type": "counter"
+    },
+    "data_sent": {
+      "values": {
+        "rate": 23645.45923758052,
+        "count": 4263403
+      },
+      "type": "counter",
+      "contains": "data"
+    },
+    "data_received": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "count": 171053520,
+        "rate": 948687.9458978341
+      }
+    },
+    "http_req_blocked": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 0,
+        "med": 0,
+        "max": 35.8962,
+        "p(90)": 0,
+        "p(95)": 0,
+        "avg": 0.038857529141569536
+      }
+    },
+    "post_duration{framework:Micronaut}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 8.6583,
+        "max": 169.6898,
+        "p(90)": 35.48549999999998,
+        "p(95)": 49.48509999999995,
+        "avg": 14.826292337164775,
+        "min": 0.7445
+      },
+      "thresholds": {
+        "p(95)<500": {
+          "ok": true
+        }
+      }
+    },
+    "post_duration{framework:Axum}": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "avg": 11.862501366925773,
+        "min": 0.8011,
+        "med": 6.2203,
+        "max": 122.8969,
+        "p(90)": 29.3104,
+        "p(95)": 42.88755
+      },
+      "thresholds": {
+        "p(95)<500": {
+          "ok": true
+        }
+      }
+    },
+    "vus_max": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 200,
+        "min": 200,
+        "max": 200
+      }
+    }
+  }
+}

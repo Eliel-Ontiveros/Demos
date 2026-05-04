@@ -54,7 +54,7 @@ func (r *PrimaryRepository) FindPaginated(ctx context.Context, limit, offset int
 	ctx, cancel := context.WithTimeout(ctx, 10*time.Second)
 	defer cancel()
 
-	opts := options.Find().SetLimit(int64(limit)).SetSkip(int64(offset))
+	opts := options.Find().SetLimit(int64(limit)).SetSkip(int64(offset)).SetSort(bson.D{{Key: "_id", Value: 1}})
 	cursor, err := r.collection.Find(ctx, bson.D{}, opts)
 	if err != nil {
 		return nil, err

@@ -40,7 +40,9 @@ public class RecordResource {
     @GET
     @Blocking
     public Response getAllRecords(
-            @HeaderParam("X-Tenant-ID") String tenantId) {
+            @HeaderParam("X-Tenant-ID") String tenantId,
+            @QueryParam("limit") @DefaultValue("100") int limit,
+            @QueryParam("offset") @DefaultValue("0") int offset) {
         if (tenantId == null || tenantId.isBlank()) {
             return Response.status(400)
                     .entity(Map.of("error", "Missing X-Tenant-ID header"))
@@ -48,7 +50,7 @@ public class RecordResource {
         }
         try {
             recordService.validateTenant(tenantId);
-            Map<String, Object> result = recordService.getAllRecords();
+            Map<String, Object> result = recordService.getAllRecords(limit, offset);
             return Response.ok(result).build();
         } catch (BadRequestException e) {
             return Response.status(400).entity(Map.of("error", e.getMessage())).build();

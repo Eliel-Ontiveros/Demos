@@ -9,6 +9,8 @@ import jakarta.inject.Inject;
 import org.bson.Document;
 import org.eclipse.microprofile.config.inject.ConfigProperty;
 
+import com.mongodb.client.model.Sorts;
+
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -41,7 +43,15 @@ public class PrimaryRecordRepository {
 
     public List<Map<String, Object>> findAll() {
         List<Map<String, Object>> result = new ArrayList<>();
-        for (Document doc : getCollection().find()) {
+        for (Document doc : getCollection().find().sort(Sorts.ascending("_id"))) {
+            result.add(documentToMap(doc));
+        }
+        return result;
+    }
+
+    public List<Map<String, Object>> findPaginated(int limit, int offset) {
+        List<Map<String, Object>> result = new ArrayList<>();
+        for (Document doc : getCollection().find().sort(Sorts.ascending("_id")).skip(offset).limit(limit)) {
             result.add(documentToMap(doc));
         }
         return result;

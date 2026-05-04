@@ -1,5 +1,6 @@
 use mongodb::{Database, Collection, bson::doc, options::FindOptions};
 use futures::TryStreamExt;
+use std::time::Duration;
 use crate::model::RecordDocument;
 
 pub struct PrimaryRepository {
@@ -29,6 +30,8 @@ impl PrimaryRepository {
         let options = FindOptions::builder()
             .limit(limit.min(i64::MAX as u64) as i64)
             .skip(offset)
+            .sort(doc! { "_id": 1 })
+            .max_time(Duration::from_secs(10))
             .build();
         let cursor = self.collection.find(doc! {}).with_options(options).await?;
         cursor.try_collect().await

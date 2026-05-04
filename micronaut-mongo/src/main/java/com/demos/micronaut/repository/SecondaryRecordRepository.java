@@ -36,7 +36,7 @@ public class SecondaryRecordRepository {
     }
 
     public Flux<RecordDocument> findPaginated(int limit, int offset) {
-        return Flux.from(getCollection().find().skip(offset).limit(limit))
+        return Flux.from(getCollection().find().sort(new Document("_id", 1)).skip(offset).limit(limit))
                 .map(this::fromDocument);
     }
 

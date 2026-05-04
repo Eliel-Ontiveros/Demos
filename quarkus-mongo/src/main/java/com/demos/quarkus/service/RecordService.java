@@ -50,9 +50,9 @@ public class RecordService {
         return response;
     }
 
-    public Map<String, Object> getAllRecords() {
-        List<Map<String, Object>> primaryRecords = primaryRepo.findAll();
-        List<Map<String, Object>> secondaryRecords = secondaryRepo.findAll();
+    public Map<String, Object> getAllRecords(int limit, int offset) {
+        List<Map<String, Object>> primaryRecords = primaryRepo.findPaginated(limit, offset);
+        List<Map<String, Object>> secondaryRecords = secondaryRepo.findPaginated(limit, offset);
 
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("primary", primaryRecords);

@@ -1,10 +1,14 @@
-FROM gradle:8.10.2-jdk21 AS build
-WORKDIR /home/gradle/project
-COPY --chown=gradle:gradle . .
-RUN gradle --no-daemon clean shadowJar
+# ── Stage 1: Native image build ──────────────────────────────────
+FROM ghcr.io/graalvm/native-image-community:21-ol9 AS build
+WORKDIR /home/app
+# findutils is required by the Gradle wrapper
+RUN microdnf install -y findutils
+COPY . .
+RUN ./gradlew --no-daemon --no-configuration-cache nativeCompile
 
-FROM eclipse-temurin:21-jre-alpine
+# ── Stage 2: Minimal runtime ─────────────────────────────────────
+FROM debian:bookworm-slim
 WORKDIR /app
-COPY --from=build /home/gradle/project/build/libs/*-all.jar app.jar
+COPY --from=build /home/app/build/native/nativeCompile/micronaut-mongo app
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+ENTRYPOINT ["/app/app"]

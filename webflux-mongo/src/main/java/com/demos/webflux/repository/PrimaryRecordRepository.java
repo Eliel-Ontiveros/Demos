@@ -10,6 +10,8 @@ import reactor.core.publisher.Mono;
 import java.util.Collection;
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
+
 @Repository
 public class PrimaryRecordRepository {
 
@@ -32,7 +34,7 @@ public class PrimaryRecordRepository {
     }
 
     public Flux<RecordDocument> findPaginated(int limit, int offset) {
-        Query query = new Query().skip(offset).limit(limit);
+        Query query = new Query().skip(offset).limit(limit).with(Sort.by(Sort.Direction.ASC, "_id"));
         return mongoTemplate.find(query, RecordDocument.class);
     }
 }

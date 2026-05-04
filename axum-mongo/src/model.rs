@@ -8,6 +8,7 @@ pub struct RecordDocument {
     pub tenant: String,
     pub name: String,
     pub value: String,
+    #[serde(rename = "createdAt")]
     #[serde(with = "bson::serde_helpers::chrono_datetime_as_bson_datetime")]
     pub created_at: chrono::DateTime<chrono::Utc>,
 }
